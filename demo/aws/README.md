@@ -36,4 +36,4 @@ Terraform의 `AWS Provider`는 내부적으로 **AWS SDK**를 사용하고, SDK�
 4. **IAM Role (EC2, Lambda, ECS 등에서 자동으로 부여됨)**
 - EC2 인스턴스나 Lambda 함수 등의 IAM 역할이 부여된 리소스에서 실행되는 경우, 해당 IAM 역할에 설정된 권한을 자동으로 사용
 
-즉, `aws configure`로 설정하면 **Terraform이 자동으로 Shared Credentials 파일에서 값을 읽어서 사용**
+ <span style="color:red"> `aws configure`로 설정하면 **Terraform이 자동으로 Shared Credentials 파일에서 값을 읽어서 사용**</span>
