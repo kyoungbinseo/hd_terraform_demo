@@ -17,7 +17,6 @@ terraform {
 
 provider "aws" {
   region    = "ap-northeast-2"
-  profile   = "ksoe_devops_terraform" 
   default_tags {
     tags = {
       environment       = "demo"
