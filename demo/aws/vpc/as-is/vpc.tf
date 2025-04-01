@@ -4,7 +4,6 @@ resource "aws_vpc" "ksoe_demo" {
 
   tags = {
     Name = "ksoe_vpc_demo_asis"
-    
   }
 }
 

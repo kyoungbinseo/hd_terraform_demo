@@ -2,7 +2,7 @@
 resource "aws_security_group" "demo" {
   name        = "ksoe_sg_demo_asis"
   description = "sg for demo ec2"
-  vpc_id      = "vpc-06ee3e3a57f2c5d42"
+  vpc_id      = "vpc-034f47c5427f5a263"
 }
 
 # attach rules
