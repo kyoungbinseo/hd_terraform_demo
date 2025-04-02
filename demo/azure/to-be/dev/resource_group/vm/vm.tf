@@ -1,30 +1,9 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~>3.0"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {
-    virtual_machine {
-      skip_shutdown_and_force_delete = true
-    }
-  }
-}
-
-resource "azurerm_resource_group" "terraformResourceGroup" {
-  name     = "ksoe-terraform-rg"
-  location = "Korea South"
-}
 
 resource "azurerm_network_interface" "example-network-interface" {
-  for_each            = var.vm_configurations
+  for_each            = { for vm in var.vm_configurations : vm.name => vm }
   name                = "${each.value.name}-nic"
-  location            = azurerm_resource_group.terraformResourceGroup.location
-  resource_group_name = azurerm_resource_group.terraformResourceGroup.name
+  location            = data.azurerm_resource_group.dev_rg.location
+  resource_group_name = data.azurerm_resource_group.dev_rg.name
 
   ip_configuration {
     name                          = "${each.value.name}-ipconfig"
@@ -34,15 +13,16 @@ resource "azurerm_network_interface" "example-network-interface" {
 }
 
 resource "azurerm_linux_virtual_machine" "example-vm" {
-  for_each                        = var.vm_configurations
+  for_each                        = { for vm in var.vm_configurations : vm.name => vm }
   name                            = each.value.name
-  location                        = azurerm_resource_group.terraformResourceGroup.location
-  resource_group_name             = azurerm_resource_group.terraformResourceGroup.name
-  network_interface_ids = [azurerm_network_interface.example-network-interface[each.key].id]# ✅ 각 key에 해당하는 NIC 참조
+  location                        = data.azurerm_resource_group.dev_rg.location
+  resource_group_name             = data.azurerm_resource_group.dev_rg.name
+  network_interface_ids           = [azurerm_network_interface.example-network-interface[each.key].id] # ✅ 각 key에 해당하는 NIC 참조
   size                            = each.value.size
   admin_username                  = each.value.username
   admin_password                  = each.value.password
   disable_password_authentication = false
+
 
   os_disk {
     name                 = "${each.value.name}-os-disk"
@@ -50,7 +30,7 @@ resource "azurerm_linux_virtual_machine" "example-vm" {
     storage_account_type = "Standard_LRS"
   }
 
-  source_image_id = var.os_images[each.value.tags.os]
+  source_image_id = data.azurerm_shared_image_version.image_rhel85.id
 
   tags = each.value.tags
 
@@ -59,8 +39,8 @@ resource "azurerm_linux_virtual_machine" "example-vm" {
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "example-shutdown" {
-  for_each = var.vm_configurations
-  location              = azurerm_resource_group.terraformResourceGroup.location
+  for_each              = { for vm in var.vm_configurations : vm.name => vm }
+  location              = data.azurerm_resource_group.dev_rg.location
   virtual_machine_id    = azurerm_linux_virtual_machine.example-vm[each.key].id
   enabled               = true
   daily_recurrence_time = "1800"
