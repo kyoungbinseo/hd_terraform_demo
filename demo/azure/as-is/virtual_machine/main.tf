@@ -12,7 +12,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "terraformResourceGroup" {
-    name = "ksoe-terraform-rg"
+    name = "ksoe-terraform-asis-rg"
     location = "Korea South"
 }
 
