@@ -24,8 +24,8 @@ terraform.rc
 *.tfplan
 
 # Ignore variable files that might contain sensitive data
-terraform.tfvars
-terraform.tfvars.json
+# terraform.tfvars
+# terraform.tfvars.json
 *.auto.tfvars
 *.auto.tfvars.json
 
