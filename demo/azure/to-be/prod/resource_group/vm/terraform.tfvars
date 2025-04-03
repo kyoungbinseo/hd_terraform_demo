@@ -14,9 +14,9 @@ vm_configurations = [
     }
   },
     {
-      name     = "dev-server-02"
+      name     = "prod-server-02"
     size     = "Standard_D4s_v3"
-      username = "devadmin"
+      username = "prodadmin"
       password = "SecureDB#456789"
       tags = {
         company = "ksoe"
