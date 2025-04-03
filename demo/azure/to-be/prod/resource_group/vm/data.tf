@@ -13,7 +13,7 @@ data "azurerm_shared_image_version" "image_rhel85" {
 }
 
 data "azurerm_resource_group" "dev_rg" {
-  name = "ksoe-terraform-dev-rg"
+  name = "ksoe-terraform-prod-rg"
 }
 
 data "azurerm_resource_group" "subnet_rg" {
