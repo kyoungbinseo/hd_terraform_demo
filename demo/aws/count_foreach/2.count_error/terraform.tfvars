@@ -1,5 +1,5 @@
 
-# [0][1][2][3]
+# [0][][2][3]
 
 vpc_cidr = "10.220.11.0/24"
 public_subnets = [
@@ -11,7 +11,7 @@ public_subnets = [
       Env  = "demo"
     }
   },
-  # terraform apply이후 아래 64 대역을 주석하고 apply 하세요.
+  # terraform apply이후 아래 64 대역을 주석하고 apply
   # 그 이후 주석 해제 후 다시 apply
   {
     "cidr" = "10.220.11.64/26",
