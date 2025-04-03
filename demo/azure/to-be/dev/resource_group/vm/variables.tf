@@ -4,7 +4,6 @@ variable "vm_configurations" {
   type = list(object({
     name     = string
     size     = optional(string, "Standard_B2s")
-    env      = string
     username = string
     password = string
     tags = object({

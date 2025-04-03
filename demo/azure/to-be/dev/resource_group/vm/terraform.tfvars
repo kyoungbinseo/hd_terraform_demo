@@ -2,7 +2,6 @@ vm_configurations = [
   {
     name = "dev-server-01"
     # size     = "Standard_B2s"
-    env      = "dev"
     username = "admin123"
     password = "P@ssw0rd123567adsA!"
     tags = {
@@ -14,26 +13,25 @@ vm_configurations = [
       purpose = "개발 vm 테스트"
     }
   }
-  #   ,
-  #   {
-  #     name     = "dev-server-01"
-  #     # size     = "Standard_D4s_v3"
-  #     env = "dev"
-  #     username = "dbadmin"
-  #     password = "SecureDB#456789"
-  #     tags = {
-  #       company = "ksoe"
-  #       team    = "클라우드추진팀"
-  #       manage  = "최규현"
-  #       code    = "PRJ-2025-2"
-  #       os      = "rhel7.6"
-  #       purpose = "개발 test create vm"
-  #     }
-  #   },
+  # ,
+    # {
+    #   name     = "dev-server-02"
+    # size     = "Standard_D4s_v3"
+    #   username = "devadmin"
+    #   password = "SecureDB#456789"
+    #   tags = {
+    #     company = "ksoe"
+    #     team    = "클라우드추진팀"
+    #     manage  = "최규현"
+    #     code    = "PRJ-2025-2"
+    #     os      = "rhel7.6"
+    #     purpose = "개발 test create vm"
+    #   }
+    # }
+    # ,
   #   {
   #     name     = "dev-server-03"
   #     # size     = "Standard_B2s"
-  #     env = "dev"
   #     username = "t1t0"
   #     password = "SecureDB#456789"
   #     tags = {
