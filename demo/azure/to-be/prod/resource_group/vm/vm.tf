@@ -37,19 +37,3 @@ resource "azurerm_linux_virtual_machine" "example-vm" {
   boot_diagnostics {}
 
 }
-
-resource "azurerm_dev_test_global_vm_shutdown_schedule" "example-shutdown" {
-  for_each              = { for vm in var.vm_configurations : vm.name => vm }
-  location              = data.azurerm_resource_group.dev_rg.location
-  virtual_machine_id    = azurerm_linux_virtual_machine.example-vm[each.key].id
-  enabled               = true
-  daily_recurrence_time = "1800"
-  timezone              = "Korea Standard Time"
-
-  notification_settings {
-    enabled         = false
-    time_in_minutes = null
-    webhook_url     = null
-  }
-
-}
