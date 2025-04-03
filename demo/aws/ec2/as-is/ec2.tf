@@ -14,8 +14,9 @@
 resource "aws_instance" "demo_ec2_asis" {
   ami                           = "ami-001690b4e6b46ab2c"
   instance_type                 = "t4g.micro"
-  vpc_security_group_ids        = ["sg-08c8b8189e337436f"] # 수정 필요
-  subnet_id                     = "subnet-00016ab070389c28e" 
+  # vpc_security_group_ids        = ["sg-08c8b8189e337436f"] # 수정 필요
+  vpc_security_group_ids        = [ aws_security_group.demo.id ]
+  subnet_id                     = "subnet-0851bd4899279c86f" # 수정 필요
   associate_public_ip_address   = false
 
 
